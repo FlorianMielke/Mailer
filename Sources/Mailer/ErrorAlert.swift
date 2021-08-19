@@ -1,8 +1,8 @@
 /**
-*  Mailer
-*  Copyright (c) Florian Mielke 2021
-*  MIT license, see LICENSE file for details
-*/
+ *  Mailer
+ *  Copyright (c) Florian Mielke 2021
+ *  MIT license, see LICENSE file for details
+ */
 
 import SwiftUI
 
@@ -11,9 +11,9 @@ extension Alert {
         if let error = error {
             if Mailer.canSendMail {
                 self.init(title: Text(error.localizedDescription),
-                      message: Text(error.completeMessages),
-                      primaryButton: .default(Mailer.text("mailer.error-alert.contact-support"), action: { showingMailer.wrappedValue = true }),
-                      secondaryButton: .default(Mailer.text("mailer.error-alert.cancel"), action: dismissAction)
+                          message: Text(error.completeMessages),
+                          primaryButton: .default(Mailer.text("mailer.error-alert.contact-support"), action: { showingMailer.wrappedValue = true }),
+                          secondaryButton: .default(Mailer.text("mailer.error-alert.cancel"), action: dismissAction)
                 )
             } else {
                 self.init(title: Text(error.localizedDescription), message: Text(error.completeMessages), dismissButton: .default(Mailer.text("mailer.error-alert.ok"), action: dismissAction))
@@ -22,8 +22,8 @@ extension Alert {
             if Mailer.canSendMail {
                 self.init(title: Mailer.text("mailer.error-alert.unknown-error.title"),
                           message: Mailer.text("mailer.error-alert.unknown-error.text"),
-                      primaryButton: .default(Mailer.text("mailer.error-alert.contact-support"), action: { showingMailer.wrappedValue = true }),
-                      secondaryButton: .default(Mailer.text("mailer.error-alert.ok"), action: dismissAction)
+                          primaryButton: .default(Mailer.text("mailer.error-alert.contact-support"), action: { showingMailer.wrappedValue = true }),
+                          secondaryButton: .default(Mailer.text("mailer.error-alert.ok"), action: dismissAction)
                 )
             } else {
                 self.init(title: Mailer.text("mailer.error-alert.unknown-error.title"), message: Mailer.text("mailer.error-alert.unknown-error.text"), dismissButton: .default(Mailer.text("mailer.error-alert.ok"), action: dismissAction))
@@ -36,7 +36,7 @@ public struct ErrorAlertModifier: ViewModifier {
     @Binding public  var error: NSError?
     public let dismissAction: (() -> Void)?
     public let forceShowing: Bool
-
+    
     @State private var showingAlert: Bool = false
     @State private var showingMailer: Bool = false
     

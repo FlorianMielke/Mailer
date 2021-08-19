@@ -1,8 +1,8 @@
 /**
-*  Mailer
-*  Copyright (c) Florian Mielke 2021
-*  MIT license, see LICENSE file for details
-*/
+ *  Mailer
+ *  Copyright (c) Florian Mielke 2021
+ *  MIT license, see LICENSE file for details
+ */
 
 import Foundation
 
@@ -18,7 +18,7 @@ extension NSError {
     var longMessaged: String {
         return [localizedDescription, localizedFailureReason, localizedRecoverySuggestion, userInfo.description].compactMap { $0 }.joined(separator: "\n\n")
     }
-
+    
     var completeMessages: String {
         var message = shortMessaged
         if let underlyingError = userInfo[NSUnderlyingErrorKey] as? NSError {
@@ -26,7 +26,7 @@ extension NSError {
         }
         return message
     }
-
+    
     var logFiled: String {
         var message = longMessaged
         if let underlyingError = userInfo[NSUnderlyingErrorKey] as? NSError {

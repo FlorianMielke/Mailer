@@ -22,7 +22,6 @@ extension Mailer {
         var appendsDeviceInformation = true
         
         private init() {
-            
         }
     }
 }
