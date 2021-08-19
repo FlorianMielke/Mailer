@@ -1,3 +1,3 @@
 # Mailer
 
-A description of this package.
+A SwiftUI Wrapper around `MFMailComposeViewController`.
