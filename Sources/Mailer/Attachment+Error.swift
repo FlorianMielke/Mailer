@@ -7,7 +7,7 @@
 import Foundation
 
 extension Attachment {
-    init?(error: Error) {
+    public init?(error: Error) {
         guard let data = (error as NSError).logFiled.data(using: .utf8) else {
             return nil
         }

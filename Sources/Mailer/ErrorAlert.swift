@@ -7,7 +7,7 @@
 import SwiftUI
 
 extension Alert {
-    init(error: NSError?, showingMailer: Binding<Bool>, dismissAction: (() -> Void)?) {
+    public init(error: NSError?, showingMailer: Binding<Bool>, dismissAction: (() -> Void)?) {
         if let error = error {
             if Mailer.canSendMail {
                 self.init(title: Text(error.localizedDescription),
@@ -32,21 +32,21 @@ extension Alert {
     }
 }
 
-struct ErrorAlertModifier: ViewModifier {
-    @Binding private var error: NSError?
-    let dismissAction: (() -> Void)?
-    let forceShowing: Bool
+public struct ErrorAlertModifier: ViewModifier {
+    @Binding public  var error: NSError?
+    public let dismissAction: (() -> Void)?
+    public let forceShowing: Bool
 
     @State private var showingAlert: Bool = false
     @State private var showingMailer: Bool = false
     
-    init(error: Binding<NSError?>, forceShowing: Bool, dismissAction: (() -> Void)?) {
+    public init(error: Binding<NSError?>, forceShowing: Bool, dismissAction: (() -> Void)?) {
         self._error = error
         self.dismissAction = dismissAction
         self.forceShowing = forceShowing
     }
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         content
             .alert(isPresented: $showingAlert) {
                 Alert(error: error, showingMailer: $showingMailer, dismissAction: dismissAction)
@@ -70,7 +70,7 @@ struct ErrorAlertModifier: ViewModifier {
 }
 
 extension View {
-    func errorAlert(error: Binding<NSError?>, forceShowing: Bool = false, dismissAction: (() -> Void)? = {}) -> some View {
+    public func errorAlert(error: Binding<NSError?>, forceShowing: Bool = false, dismissAction: (() -> Void)? = {}) -> some View {
         self.modifier(ErrorAlertModifier(error: error, forceShowing: forceShowing, dismissAction: dismissAction))
     }
 }

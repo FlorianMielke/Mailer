@@ -7,19 +7,19 @@
 import Foundation
 
 extension Bundle {
-    public var appName: String {
+    var appName: String {
         return infoDictionary?["CFBundleDisplayName"] as! String
     }
     
-    public var versionNumber: String {
+    var versionNumber: String {
         return infoDictionary?["CFBundleShortVersionString"] as! String
     }
     
-    public var buildNumber: String {
+    var buildNumber: String {
         return infoDictionary?["CFBundleVersion"] as! String
     }
     
-    public var presentableVersionNumber: String {
+    var presentableVersionNumber: String {
         return "\(versionNumber) (\(buildNumber))"
     }
 }

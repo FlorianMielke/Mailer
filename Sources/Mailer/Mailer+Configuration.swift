@@ -7,10 +7,14 @@
 import Foundation
 
 extension Mailer {
-    class Configuration {
-        static let shared = Configuration()
+    public class Configuration {
+        public static let shared = Configuration()
         
-        let supportEmailAddress: String? = nil
-        let appendDeviceInformation = true
+        public let supportEmailAddress: String? = nil
+        public let appendDeviceInformation = true
+        
+        private init() {
+            
+        }
     }
 }

@@ -7,19 +7,19 @@
 import SwiftUI
 import MessageUI
 
-struct Mailer: UIViewControllerRepresentable {
-    @Environment(\.presentationMode) var presentationMode
-    let message: Message?
-    @Binding var result: Result<MFMailComposeResult, Error>?
+public struct Mailer: UIViewControllerRepresentable {
+    @Environment(\.presentationMode) public var presentationMode
+    public let message: Message?
+    @Binding public var result: Result<MFMailComposeResult, Error>?
     
-    class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
+    public class Coordinator: NSObject, MFMailComposeViewControllerDelegate {
         let parent: Mailer
         
         init(_ parent: Mailer) {
             self.parent = parent
         }
         
-        func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        public func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
             defer {
                 parent.presentationMode.wrappedValue.dismiss()
             }
@@ -31,11 +31,11 @@ struct Mailer: UIViewControllerRepresentable {
         }
     }
     
-    func makeCoordinator() -> Coordinator {
+    public func makeCoordinator() -> Coordinator {
         return Coordinator(self)
     }
     
-    func makeUIViewController(context: Context) -> MFMailComposeViewController {
+    public func makeUIViewController(context: Context) -> MFMailComposeViewController {
         let controller = MFMailComposeViewController()
         controller.mailComposeDelegate = context.coordinator
         
@@ -53,22 +53,22 @@ struct Mailer: UIViewControllerRepresentable {
         return controller
     }
     
-    func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) {
+    public func updateUIViewController(_ uiViewController: MFMailComposeViewController, context: Context) {
         
     }
 }
 
 extension Mailer {
-    static var canSendMail: Bool {
+    public static var canSendMail: Bool {
         MFMailComposeViewController.canSendMail()
     }
 
-    init(error: NSError, result: Binding<Result<MFMailComposeResult, Error>?>) {
+    public init(error: NSError, result: Binding<Result<MFMailComposeResult, Error>?>) {
         let message = Message(error: error)
         self.init(message: message, result: result)
     }
     
-    static func support() -> Mailer {
+    public static func support() -> Mailer {
         return Mailer(message: Message.support, result: .constant(nil))
     }
 }

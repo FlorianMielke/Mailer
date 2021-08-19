@@ -6,19 +6,19 @@
 
 import UIKit
 
-struct Message: Equatable, Hashable {
-    var subject = ""
-    var body = ""
-    var isHTML: Bool = false
-    var toRecipients = [String]()
-    var ccRecipients = [String]()
-    var bccRecipients = [String]()
-    var attachments = [Attachment]()
+public struct Message: Equatable, Hashable {
+    public var subject = ""
+    public var body = ""
+    public var isHTML: Bool = false
+    public var toRecipients = [String]()
+    public var ccRecipients = [String]()
+    public var bccRecipients = [String]()
+    public var attachments = [Attachment]()
 }
 
 // MARK: - Error
 extension Message {
-    init(error: Error) {
+    public init(error: Error) {
         if let logFile = Attachment(error: error) {
             self.attachments = [logFile]
         }
@@ -26,7 +26,7 @@ extension Message {
 }
 
 extension Message {
-    static var support: Message? {
+    public static var support: Message? {
         let configuration = Mailer.Configuration.shared
         
         guard let supportEmailAddress = configuration.supportEmailAddress else {

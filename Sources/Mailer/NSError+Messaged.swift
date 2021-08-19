@@ -7,19 +7,19 @@
 import Foundation
 
 extension NSError {
-    @objc public var shortMessaged: String {
+    var shortMessaged: String {
         return [localizedFailureReason, localizedRecoverySuggestion].compactMap { $0 }.joined(separator: "\n\n")
     }
     
-    @objc public var mediumMessaged: String {
+    var mediumMessaged: String {
         return [localizedDescription, localizedFailureReason, localizedRecoverySuggestion].compactMap { $0 }.joined(separator: "\n\n")
     }
     
-    @objc public var longMessaged: String {
+    var longMessaged: String {
         return [localizedDescription, localizedFailureReason, localizedRecoverySuggestion, userInfo.description].compactMap { $0 }.joined(separator: "\n\n")
     }
 
-    @objc public var completeMessages: String {
+    var completeMessages: String {
         var message = shortMessaged
         if let underlyingError = userInfo[NSUnderlyingErrorKey] as? NSError {
             message += "\n\n\(underlyingError.mediumMessaged)"
@@ -27,7 +27,7 @@ extension NSError {
         return message
     }
 
-    @objc public var logFiled: String {
+    var logFiled: String {
         var message = longMessaged
         if let underlyingError = userInfo[NSUnderlyingErrorKey] as? NSError {
             message += "\n\n\(underlyingError.userInfo)"

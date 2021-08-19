@@ -6,8 +6,8 @@
 
 import Foundation
 
-struct Attachment: Equatable, Hashable {
-    let dataRepresentation: Data
-    let fileName: String
-    let mimeType: String
+public struct Attachment: Equatable, Hashable {
+    public let dataRepresentation: Data
+    public let fileName: String
+    public let mimeType: String
 }
