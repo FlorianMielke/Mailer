@@ -1,8 +1,8 @@
 /**
-*  Mailer
-*  Copyright (c) Florian Mielke 2021
-*  MIT license, see LICENSE file for details
-*/
+ *  Mailer
+ *  Copyright (c) Florian Mielke 2021
+ *  MIT license, see LICENSE file for details
+ */
 
 import SwiftUI
 import MessageUI
@@ -62,7 +62,7 @@ extension Mailer {
     public static var canSendMail: Bool {
         MFMailComposeViewController.canSendMail()
     }
-
+    
     public init(error: NSError, result: Binding<Result<MFMailComposeResult, Error>?>) {
         let message = Message(error: error)
         self.init(message: message, result: result)

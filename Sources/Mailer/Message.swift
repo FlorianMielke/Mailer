@@ -36,7 +36,7 @@ extension Message {
         var message = Message()
         message.toRecipients = [supportEmailAddress]
         message.subject = "\(Bundle.main.appName) \(Bundle.main.presentableVersionNumber)"
-        message.body = configuration.appendDeviceInformation ? supportFooter : ""
+        message.body = configuration.appendsDeviceInformation ? supportFooter : ""
         return message
     }
     
