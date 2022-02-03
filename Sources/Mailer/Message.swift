@@ -10,7 +10,7 @@ public struct Message: Equatable, Hashable {
     public var subject = ""
     public var body = ""
     public var isHTML: Bool = false
-    public var toRecipients = [String]()
+    public var toRecipients: [String]
     public var ccRecipients = [String]()
     public var bccRecipients = [String]()
     public var attachments = [Attachment]()
@@ -18,29 +18,30 @@ public struct Message: Equatable, Hashable {
 
 // MARK: - Error
 extension Message {
+    public init() {
+        if let supportEmailAddress = Mailer.Configuration.shared.defaultRecipient {
+            toRecipients = [supportEmailAddress]
+        } else {
+            toRecipients = [String]()
+        }
+        
+        body = Mailer.Configuration.shared.appendsDeviceInformation ? Message.deviceInformation : ""
+    }
+    
     public init(error: Error) {
+        self.init()
         if let logFile = Attachment(error: error) {
-            self.attachments = [logFile]
+            attachments = [logFile]
         }
     }
-}
 
-extension Message {
-    public static var support: Message? {
-        let configuration = Mailer.Configuration.shared
-        
-        guard let supportEmailAddress = configuration.supportEmailAddress else {
-            return nil
-        }
-        
+    public static var support: Message {
         var message = Message()
-        message.toRecipients = [supportEmailAddress]
         message.subject = "\(Bundle.main.appName) \(Bundle.main.presentableVersionNumber)"
-        message.body = configuration.appendsDeviceInformation ? supportFooter : ""
         return message
     }
     
-    private static var supportFooter: String {
+    private static var deviceInformation: String {
         let footer =
             """
             

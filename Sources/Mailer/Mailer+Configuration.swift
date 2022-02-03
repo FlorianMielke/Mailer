@@ -7,8 +7,8 @@
 import Foundation
 
 extension Mailer {
-    public static func configure(supportEmailAddress: String) {
-        Configuration.shared.supportEmailAddress = supportEmailAddress
+    public static func configure(defaultRecipient: String) {
+        Configuration.shared.defaultRecipient = defaultRecipient
     }
 
     public static func configure(appendsDeviceInformation: Bool) {
@@ -18,7 +18,7 @@ extension Mailer {
     class Configuration {
         static let shared = Configuration()
         
-        var supportEmailAddress: String? = nil
+        var defaultRecipient: String? = nil
         var appendsDeviceInformation = true
         
         private init() {
