@@ -19,12 +19,7 @@ public struct Message: Equatable, Hashable {
 // MARK: - Error
 extension Message {
     public init() {
-        if let supportEmailAddress = Mailer.Configuration.shared.defaultRecipient {
-            toRecipients = [supportEmailAddress]
-        } else {
-            toRecipients = [String]()
-        }
-        
+        toRecipients = Mailer.Configuration.shared.defaultRecipients
         body = Mailer.Configuration.shared.appendsDeviceInformation ? Message.deviceInformation : ""
     }
     
