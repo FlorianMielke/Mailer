@@ -72,9 +72,3 @@ extension Mailer {
         return Mailer(message: Message.support, result: .constant(nil))
     }
 }
-
-struct MailView_Previews: PreviewProvider {
-    static var previews: some View {
-        Mailer(message: nil, result: .constant(.success(MFMailComposeResult.sent)))
-    }
-}
