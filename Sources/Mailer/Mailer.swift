@@ -62,12 +62,16 @@ extension Mailer {
   public static var canSendMail: Bool {
     MFMailComposeViewController.canSendMail()
   }
-  
+
   public init(error: NSError, result: Binding<Result<MFMailComposeResult, Error>?>) {
-    let message = Message(error: error)
-    self.init(message: message, result: result)
+    self.init(errors: [error as Error], result: result)
   }
   
+  public init(errors: [Error], result: Binding<Result<MFMailComposeResult, Error>?>) {
+    let message = Message(errors: errors)
+    self.init(message: message, result: result)
+  }
+
   public static func support() -> Mailer {
     return Mailer(message: Message.support, result: .constant(nil))
   }
