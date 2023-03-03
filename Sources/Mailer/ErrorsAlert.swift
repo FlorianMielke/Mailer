@@ -34,6 +34,7 @@ public struct ErrorsAlertModifier: ViewModifier {
 
         Button(role: .cancel) {
           isPresenting = false
+          dismissAction?()
         } label: {
           Mailer.text("mailer.error-alert.cancel")
         }
