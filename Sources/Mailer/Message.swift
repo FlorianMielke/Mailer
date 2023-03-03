@@ -30,6 +30,7 @@ extension Message {
   public init(errors: [Error]) {
     self.init()
     attachments = errors.compactMap { Attachment(error: $0) }
+    subject = "\(Bundle.main.appName) \(Bundle.main.presentableVersionNumber)"
   }
   
   public static var support: Message {
