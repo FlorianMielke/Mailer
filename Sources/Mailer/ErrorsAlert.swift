@@ -25,12 +25,17 @@ public struct ErrorsAlertModifier: ViewModifier {
     
     content
       .alert(isPresented: $isPresenting, error: firstAlertError) { _ in
-        Button("mailer.error-alert.contact-support") {
+        Button {
           showingMailer = true
           isPresenting = false
+        } label: {
+          Mailer.text("mailer.error-alert.contact-support")
         }
-        Button("mailer.error-alert.cancel", role: .cancel) {
+
+        Button(role: .cancel) {
           isPresenting = false
+        } label: {
+          Mailer.text("mailer.error-alert.cancel")
         }
       } message: { error in
         Text(error.recoverySuggestion ?? "")
