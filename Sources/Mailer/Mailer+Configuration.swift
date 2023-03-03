@@ -7,21 +7,21 @@
 import Foundation
 
 extension Mailer {
-    public static func configure(defaultRecipients: [String]) {
-        Configuration.shared.defaultRecipients = defaultRecipients
+  public static func configure(defaultRecipients: [String]) {
+    Configuration.shared.defaultRecipients = defaultRecipients
+  }
+  
+  public static func configure(appendsDeviceInformation: Bool) {
+    Configuration.shared.appendsDeviceInformation = appendsDeviceInformation
+  }
+  
+  class Configuration {
+    static let shared = Configuration()
+    
+    var defaultRecipients = [String]()
+    var appendsDeviceInformation = false
+    
+    private init() {
     }
-
-    public static func configure(appendsDeviceInformation: Bool) {
-        Configuration.shared.appendsDeviceInformation = appendsDeviceInformation
-    }
-
-    class Configuration {
-        static let shared = Configuration()
-        
-        var defaultRecipients = [String]()
-        var appendsDeviceInformation = false
-        
-        private init() {
-        }
-    }
+  }
 }

@@ -7,7 +7,7 @@
 import Foundation
 
 public struct Attachment: Equatable, Hashable {
-    public let dataRepresentation: Data
-    public let fileName: String
-    public let mimeType: String
+  public let dataRepresentation: Data
+  public let fileName: String
+  public let mimeType: String
 }

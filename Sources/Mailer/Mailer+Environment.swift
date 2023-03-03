@@ -7,7 +7,7 @@
 import SwiftUI
 
 extension Mailer {
-    static func text(_ key: LocalizedStringKey) -> Text {
-        Text(key, bundle: .module)
-    }
+  static func text(_ key: LocalizedStringKey) -> Text {
+    Text(key, bundle: .module)
+  }
 }

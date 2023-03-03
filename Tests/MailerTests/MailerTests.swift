@@ -8,10 +8,10 @@ import XCTest
 @testable import Mailer
 
 final class MailerTests: XCTestCase {
-    func testExample() {
-    }
-    
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+  func testExample() {
+  }
+  
+  static var allTests = [
+    ("testExample", testExample),
+  ]
 }
